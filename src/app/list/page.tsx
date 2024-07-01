@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import loader from "../api/dataLoader";
-import BTN from "../components/btn";
-import Card from '../components/card';
+import loader from "../../app/api/dataLoader";
+import BTN from "../../app/components/btn";
+import Card from "../../app/components/card";
 
 const ListPage: React.FC = () => {
-    const [data, setData] = useState<HelloWorld | null>(null)
+    const [data, setData] = useState<HelloWorld | null>(null);
     useEffect(() => {
         const fetchData = async () => {
             const result = await loader();
             setData(result);
-        }
+        };
         fetchData();
     }, []);
 
@@ -22,10 +22,10 @@ const ListPage: React.FC = () => {
                 <h1>Hello List</h1>
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
-            <div>{data ? data.hello : 'Loading...'}</div>
+            <div>{data ? data.hello : "Loading..."}</div>
             <Card />
         </div>
-    )
-}
+    );
+};
 
 export default ListPage;
