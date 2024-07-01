@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import loader from "../api/dataLoader";
 import BTN from "../components/btn";
+import Card from '../components/card';
 
 const ListPage: React.FC = () => {
     const [data, setData] = useState<HelloWorld | null>(null)
@@ -22,6 +23,7 @@ const ListPage: React.FC = () => {
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
             <div>{data ? data.hello : 'Loading...'}</div>
+            <Card />
         </div>
     )
 }

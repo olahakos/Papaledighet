@@ -1,0 +1,11 @@
+.card {
+    perspective: 1000px; /* Ensure perspective is set for 3D effect */
+}
+
+.flip180 {
+    transform: rotateY(180deg);
+}
+
+.flip0 {
+    transform: rotateY(0deg);
+}
