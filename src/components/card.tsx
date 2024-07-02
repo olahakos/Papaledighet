@@ -19,7 +19,7 @@ const Card: React.FC<CardPropos> = ({ src }) => {
 
     return (
         <div
-            className={`relative w-40 h-40 bg-gray-200 rounded-lg shadow-md ${style.card}`}
+            className={`cursor-pointer relative w-40 h-40 bg-gray-200 rounded-lg shadow-md ${style.card}`}
             onClick={handleCardClick}
         >
             <div
@@ -41,19 +41,19 @@ const Card: React.FC<CardPropos> = ({ src }) => {
                 </div>
             </div>
             <div
-                className={`absolute inset-0 transform ${
+                className={`shadow-md border absolute inset-0 transform ${
                     isFlipped ? `${style.flip0}` : `${style.flip180}`
                 } transition-transform duration-500 ease-in-out`}
                 style={{ backfaceVisibility: "hidden" }} // Ensure backface visibility is set inline
             >
                 <div
-                    className={`absolute inset-0 text-white bg-green-500 rounded-lg backface-hidden overflow-hidden w-${CARD_SIZE} h-${CARD_SIZE}`}
+                    className={`shadow-md border absolute inset-0 w-full h-full object-cover object-center bg-green-500 rounded-lg backface-hidden overflow-hidden`}
                 >
                     <Image
                         src={`${baseUrl}${src}`}
                         alt="Card Front"
-                        width={CARD_SIZE}
-                        height={CARD_SIZE}
+                        layout="fill"
+                        objectFit="cover"
                         priority
                     />
                 </div>

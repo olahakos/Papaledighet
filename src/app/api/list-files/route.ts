@@ -16,8 +16,6 @@ export async function GET(req: NextApiRequest) {
 
     try {
         const data = await s3.listObjectsV2(params).promise();
-        console.log(data);
-
         const files = data.Contents?.map((item) => item.Key);
         return NextResponse.json({ files }, { status: 200 });
     } catch (error) {

@@ -5,13 +5,23 @@ import React, { useState, useEffect } from "react";
 import loader from "../../app/api/dataLoader";
 import BTN from "../../components/btn";
 import Card from "../../components/card";
+import { getBoard } from "@/utils/gameLogic";
 
 const ListPage: React.FC = () => {
-    const [data, setData] = useState<HelloWorld | null>(null);
+    const [data, setData] = useState<string[] | null>(null);
     useEffect(() => {
         const fetchData = async () => {
-            const result = await loader();
-            setData(result);
+            try {
+                const response = await fetch("/api/list-files");
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const data = await response.json();
+                const board = getBoard(data.files, 12);
+                setData(board);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
         fetchData();
     }, []);
@@ -22,8 +32,11 @@ const ListPage: React.FC = () => {
                 <h1>Hello List</h1>
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
-            <div>{data ? data.hello : "Loading..."}</div>
-            <Card src="IMG_0035.jpeg" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {data?.map((src) => (
+                    <Card src={src} />
+                ))}
+            </div>
         </div>
     );
 };
