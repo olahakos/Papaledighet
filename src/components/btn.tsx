@@ -4,7 +4,7 @@ interface ButtonPropos {
     hrefParam: string;
     children: React.ReactNode;
 }
-const BTN: React.FC<ButtonPropos> = ({hrefParam, children}) => {
+const BTN: React.FC<ButtonPropos> = ({ hrefParam, children }) => {
     return (
         <a
             href={hrefParam}
@@ -13,5 +13,5 @@ const BTN: React.FC<ButtonPropos> = ({hrefParam, children}) => {
             {children}
         </a>
     );
-}
+};
 export default BTN;

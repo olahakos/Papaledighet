@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 
 import loader from "../../app/api/dataLoader";
-import BTN from "../../app/components/btn";
-import Card from "../../app/components/card";
+import BTN from "../../components/btn";
+import Card from "../../components/card";
 
 const ListPage: React.FC = () => {
     const [data, setData] = useState<HelloWorld | null>(null);
@@ -23,7 +23,7 @@ const ListPage: React.FC = () => {
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
             <div>{data ? data.hello : "Loading..."}</div>
-            <Card />
+            <Card src="IMG_0035.jpeg" />
         </div>
     );
 };

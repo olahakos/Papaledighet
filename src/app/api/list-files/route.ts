@@ -10,13 +10,14 @@ const s3 = new AWS.S3({
 });
 
 export async function GET(req: NextApiRequest) {
-    console.log("arrived");
     const params = {
         Bucket: process.env.AWS_S3_BUCKET_NAME as string,
     };
 
     try {
         const data = await s3.listObjectsV2(params).promise();
+        console.log(data);
+
         const files = data.Contents?.map((item) => item.Key);
         return NextResponse.json({ files }, { status: 200 });
     } catch (error) {

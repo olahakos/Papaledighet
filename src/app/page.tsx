@@ -1,4 +1,4 @@
-import BTN from "./components/btn";
+import BTN from "../components/btn";
 
 export default function Home() {
     return (
