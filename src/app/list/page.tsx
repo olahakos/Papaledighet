@@ -33,8 +33,8 @@ const ListPage: React.FC = () => {
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {data?.map((src) => (
-                    <Card src={src} />
+                {data?.map((src, i) => (
+                    <Card key={`${src}-${i}`} src={src} />
                 ))}
             </div>
         </div>

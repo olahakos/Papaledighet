@@ -1,6 +1,5 @@
 // pages/api/list-files.ts
-import type { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import AWS from "aws-sdk";
 
 const s3 = new AWS.S3({
@@ -9,7 +8,7 @@ const s3 = new AWS.S3({
     region: process.env.AWS_REGION,
 });
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
     const params = {
         Bucket: process.env.AWS_S3_BUCKET_NAME as string,
     };
