@@ -62,12 +62,12 @@ const ListPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 w-full max-w-md items-center justify-between font-mono text-sm lg:flex">
-                <h1>Hello List</h1>
+        <div className="flex min-h-screen flex-col items-center justify-start px-4 sm:px-8 py-8">
+            <div className="z-10 w-full max-w-md flex items-center justify-between font-mono text-sm">
+                <h1 className="text-lg sm:text-2xl font-bold">Hello List</h1>
                 <BTN hrefParam="/">[Back to home]</BTN>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 gap-2 sm:gap-4">
                 {data?.map((src, i) => (
                     <Card
                         key={`${src}-${i}`}
