@@ -9,4 +9,16 @@ const getBoard = (allImages: string[], numberOfCards: number) => {
     const finalArr = [...selectedImages, ...selectedImages];
     return shuffleArray(finalArr);
 };
-export { getBoard };
+
+/**
+ * Checks if two cards match.
+ *
+ * @param card1 - The first card.
+ * @param card2 - The second card.
+ * @returns True if the cards match, false otherwise.
+ */
+const isMatch = (card1: string, card2: string) => {
+    return card1.split("-")[0] === card2.split("-")[0];
+};
+
+export { getBoard, isMatch };
