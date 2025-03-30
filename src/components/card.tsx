@@ -4,15 +4,20 @@ import Image from "next/image";
 
 interface CardPropos {
     src: string;
+    onCardClick?: (term: string) => void;
+    canFlip: boolean;
+    flipped: boolean;
+    position: number;
 }
 
-const Card: React.FC<CardPropos> = ({ src }) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-
+const Card: React.FC<CardPropos> = ({ src, canFlip, onCardClick, flipped, position }) => {
     const baseUrl = `https://papaledig.s3.eu-north-1.amazonaws.com/`;
 
     const handleCardClick = () => {
-        setIsFlipped(!isFlipped);
+        if (!canFlip) return; // Prevent flipping if canFlip is false
+        if (onCardClick && !flipped) {
+            onCardClick(`${src}-${position}`); // Call the onCardClick function if provided
+        }
     };
 
     const CARD_SIZE = 200;
@@ -24,7 +29,7 @@ const Card: React.FC<CardPropos> = ({ src }) => {
         >
             <div
                 className={`absolute inset-0 transform ${
-                    isFlipped ? `${style.flip180}` : `${style.flip0}`
+                    flipped ? `${style.flip180}` : `${style.flip0}`
                 } transition-transform duration-500 ease-in-out`}
                 style={{ backfaceVisibility: "hidden" }} // Ensure backface visibility is set inline
             >
@@ -42,7 +47,7 @@ const Card: React.FC<CardPropos> = ({ src }) => {
             </div>
             <div
                 className={`shadow-md border absolute inset-0 transform ${
-                    isFlipped ? `${style.flip0}` : `${style.flip180}`
+                    flipped ? `${style.flip0}` : `${style.flip180}`
                 } transition-transform duration-500 ease-in-out`}
                 style={{ backfaceVisibility: "hidden" }} // Ensure backface visibility is set inline
             >
@@ -52,8 +57,9 @@ const Card: React.FC<CardPropos> = ({ src }) => {
                     <Image
                         src={`${baseUrl}${src}`}
                         alt="Card Front"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        style={{ objectFit: "cover" }}
                         priority
                     />
                 </div>
